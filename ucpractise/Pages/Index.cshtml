@@ -16,11 +16,13 @@
             background-image: url("/images/bg.jpg");
             background-repeat: no-repeat;
             background-size: cover;
+            padding:0px;
+            margin:0px;
         }
     </style>
 </head>
 <body>
-    <header >
+    <header>
         вмт
     </header>
         
@@ -43,6 +45,69 @@
 
         <main>
             информация
+            <p>
+                логин:<br />
+                <input id="login" />
+            </p>
+            <p>
+                пароль:<br />
+                <input id="password"/>
+            </p>
+            <p>
+                поддтвердите пароль <br/>
+                <input id="confpass" />
+            </p>
+            <p>
+                <button id="reg">Сохранить</button>
+                <p id="err">
+                    пароли не совпадают
+                </p>
+
         </main>
 </body>
+
+
 </html>
+
+<script>
+    
+
+    async function reg(loginF, passF) {
+
+        const response = await fetch("api/register", {
+            method: "POST",
+            headers: { "Accept": "application/json", "Content-Type": "application/json" },
+            body: JSON.stringify({
+                login: loginF,
+                password: passF
+            })
+        });
+
+        if (response.ok === true) {
+            const user = await response.json();
+        }
+        else {
+            const error = await response.json();
+            const err = document.getElementById("err");
+            err.innerHTML = error.message;
+            err.style.display = "block";
+            console.log(error.message);
+        }
+    }
+
+    document.getElementById("reg").addEventListener("click", async () => {
+
+        const logint = document.getElementById("login").value;
+        const passt = document.getElementById("password").value;
+        const cp = document.getElementById("confpass").value;
+        const err = document.getElementById("err");
+        if (cp === passt) {
+            err.style.display = "none";
+            await reg(logint, passt);
+        }
+        else { 
+            err.style.display = "block";
+        }
+        
+    });
+</script>
