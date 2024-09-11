@@ -1,0 +1,55 @@
+body {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background-image: url("img/bg.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+header {
+    position: relative;
+    background-color: black;
+    width: 100%;
+    height: 10%;
+    color: white;
+}
+aside{
+    position: relative;
+    width: 30%;
+    height: 100%;
+    background-color: black;
+    margin-left: 15%;
+    text-align: center;
+    color: white;
+    padding: auto;
+    float: left;
+}
+#logo{
+    position: inherit;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 150px;
+    height: 150px;
+}
+#AsTxt {
+    text-align: left;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+#bpou {
+    text-align: left;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+main {
+    position: relative;
+    width: 45%;
+    height: 100%;
+    margin-left: 47%;
+    margin-top: 5%;
+    color: white;
+    background-color: black;
+}
