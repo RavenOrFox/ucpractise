@@ -59,3 +59,12 @@ main {
     display: none;
     color:red;
 }
+
+.divbtn {
+    display: flex;
+    color: white;
+    margin: 10px;
+    padding: 1px;
+    border-bottom: dashed;
+    border-color: gray;
+}
