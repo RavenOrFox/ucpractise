@@ -6,7 +6,6 @@ header {
     height: 10%;
     color: white;
 }
-
 aside {
     position: absolute;
     left: 15%;
@@ -18,7 +17,6 @@ aside {
     padding: auto;
     float: left;
 }
-
 #logo {
     position: relative;
     display: block;
@@ -27,7 +25,6 @@ aside {
     width: 150px;
     height: 150px;
 }
-
 #AsTxt {
     text-align: left;
     margin-left: 15%;
@@ -43,7 +40,7 @@ aside {
 main {
     position: relative;
     width: 45%;
-    height: 100%;
+    height: max-content;
     margin-left: 47%;
     margin-top: 5%;
     color: white;
@@ -66,16 +63,19 @@ main {
 }
 
 .news {
+    
     position: relative;
     width: 250px;
     height: max-content;
     background-color: #424242;
     color: white;
+
 }
 
 .NImg {
     width: 250px;
-    height: auto;
+    height:auto;
+
 }
 
 .mainblock {
