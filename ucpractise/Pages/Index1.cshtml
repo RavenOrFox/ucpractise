@@ -1,0 +1,191 @@
+@page
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="@Url.Content("~/css/style.css")">
+    @* <link rel="stylesheet" href="@(nameof(ucpractise)).styles.css" /> *@
+    <title>вмт</title>
+
+    <style>
+        body {
+            position: relative;
+            height: max-content;
+            width: 100%;
+            background-image: url("/images/bg.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+            padding:0px;
+            margin:0px;
+        }
+    </style>
+</head>
+<body id="body">
+    <header>
+        <div class="divbtn">
+            главная
+        </div>
+        <div class="divbtn">
+            создать новость
+        </div>
+    </header>
+        
+        <aside>
+            <img src="~/images/logo.png" alt="" id="logo">
+            <h1>ОБРАЗОВАТЕЛЬНЫЙ ПОРТАЛ</h1>
+            <h2 id="bpou">
+                БПОУ УР
+                «Воткинский машиностроительный техникум имени В.Г. Садовникова» 
+            </h2>
+            <p id="AsTxt">427439, г. Воткинск, Королева, 20а
+                Телефон: (34145) 3-54-26
+                Факс: (34145) 3-36-97
+                E-mail: bpou-vmt@podved-mo.udmr.ru
+                Информационные ресурсы организации: http://ciur.ru/vmt/
+                
+                Директор: и.о. директора Мехоношина Лада Владимировна
+                Дата создания организации: 18 августа 1907 г.</p>
+        </aside>
+
+        <main id="main">
+            информация<br/>
+            @* <p>
+                логин:<br />
+                <input id="login" />
+            </p>
+            <p>
+                пароль:<br />
+                <input id="password"/>
+            </p>
+            <p>
+                поддтвердите пароль <br/>
+                <input id="confpass" />
+            </p>
+            <p> *@
+                @* <button id="reg">Сохранить</button>
+                <p id="err">
+                    пароли не совпадают
+            </p> *@
+            @* <button id="hu">гг</button> *@
+
+                 @* <div class="mainblock">
+                    <div class="news">
+                        <img src="/images/bg.jpg" alt="Alternate Text" class="NImg" />
+                        <div class"info">
+                                негры
+                        </div>
+
+                    </div>
+                </div> *@
+
+                 <div class="mainblock">
+                    <div class="news">
+                        @* <img src="/images/bg.jpg" alt="Alternate Text" class="NImg" /> *@
+                        <p class="head">
+                            голова
+                        </p>
+                        <div class="info">
+                                негры
+                        </div>
+
+                    </div>
+                </div>
+
+                @*  <div class="mainblock">
+                    <div class="news">
+                        <img src="/images/bg.jpg" alt="Alternate Text" class="NImg" />
+                        <div class"info">
+                                негры
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="mainblock">
+                    <div class="news">
+                        <img src="/images/bg.jpg" alt="Alternate Text" class="NImg" />
+                        <div class"info">
+                            негры
+                        </div>
+
+                    </div>
+                </div>  *@
+        </main>
+</body>
+
+
+</html>
+
+<script>
+    
+
+    async function reg(loginF, passF) {
+
+        const response = await fetch("api/register", {
+            method: "POST",
+            headers: { "Accept": "application/json", "Content-Type": "application/json" },
+            body: JSON.stringify({
+                login: loginF,
+                password: passF
+            })
+        });
+
+        if (response.ok === true) {
+            const user = await response.json();
+        }
+        else {
+            const error = await response.json();
+            const err = document.getElementById("err");
+            err.innerHTML = error.message;
+            err.style.display = "block";
+            console.log(error.message);
+        }
+    }
+
+    document.body.onload = getNews;
+
+    function NewN(news1)
+    {
+        var main = document.getElementById("main");
+        var mainblock = document.createElement("div");
+        var news = document.createElement("div");
+        var head = document.createElement("p");
+        var info = document.createElement("div");
+
+        mainblock.className = "mainblock";
+        news.className = "news";
+        head.className = "head";
+        info.className = "info";
+
+
+        mainblock.Id = news1.id;
+        main.append(mainblock);
+        mainblock.append(news);
+        news.append(head); 
+        news.append(info);
+        head.append(news1.head);
+        info.append(news1.info);
+
+
+    };
+
+
+    async function getNews() {
+       // отправляет запрос и получаем ответ
+        const response = await fetch("/api/News", {
+            method: "GET",
+            headers: { "Accept": "application/json" }
+        });
+        //если запрос прошел нормально
+        if (response.ok === true) {
+            //получаем данные
+           const News = await response.json();
+           // добавляем полученные элементы в таблицу
+            News.forEach(news => NewN(news));
+            
+        }
+    }
+</script>

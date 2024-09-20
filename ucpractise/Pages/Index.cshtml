@@ -1,122 +1,68 @@
 @page
-<!DOCTYPE html>
-<html lang="ru">
+ <!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>БПОУ УР «Воткинский машиностроительный техникум имени В.Г. Садовникова»</title>
     <link rel="stylesheet" href="@Url.Content("~/css/style.css")">
-    @* <link rel="stylesheet" href="@(nameof(ucpractise)).styles.css" /> *@
-    <title>вмт</title>
-
-    <style>
-        body {
-            position: relative;
-            height: max-content;
-            width: 100%;
-            background-image: url("/images/bg.jpg");
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-attachment: fixed;
-            padding:0px;
-            margin:0px;
-        }
-    </style>
+    <link rel="shortcut icon" href="photo/emblem.png" type="image/x-icon"/>
+    <script src="js/rollbutton.js"></script>
+    <script src="js/footer.js"></script>
+    <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
 </head>
-<body id="body">
+<body>
     <header>
-        <div class="divbtn">
-            главная
+        <div class="top-menu">
+                <div onclick="rollbutton('rectangle1')" class="underline">Главная
+                    <div id="rectangle1" >
+                        <a class="underline">Главная</a>
+                        <a class="underline">Абитуренту</a>
+                        <a class="underline">Студенту</a>
+                    </div>
+                </div>
+                <a class="underline" href="https://es.ciur.ru/auth/login-page">Электронная школа</a>
+                <a class="underline"href="https://ds.ciur.ru/auth/login-page">Электронный детский сад</a>
+                <a class="underline" href="https://ek.udmr.ru/auth/login-page">Электронный колледж</a>  
+                <a class="underline" >Контакты</a>
+            </div>
         </div>
-        <div class="divbtn">
-            создать новость
-        </div>
+    <button id="headerbt" class="btn">Вход</button>
     </header>
-        
-        <aside>
-            <img src="~/images/logo.png" alt="" id="logo">
-            <h1>ОБРАЗОВАТЕЛЬНЫЙ ПОРТАЛ</h1>
-            <h2 id="bpou">
-                БПОУ УР
-                «Воткинский машиностроительный техникум имени В.Г. Садовникова» 
-            </h2>
-            <p id="AsTxt">427439, г. Воткинск, Королева, 20а
-                Телефон: (34145) 3-54-26
-                Факс: (34145) 3-36-97
-                E-mail: bpou-vmt@podved-mo.udmr.ru
-                Информационные ресурсы организации: http://ciur.ru/vmt/
-                
-                Директор: и.о. директора Мехоношина Лада Владимировна
-                Дата создания организации: 18 августа 1907 г.</p>
-        </aside>
-
-        <main id="main">
-            информация<br/>
-            @* <p>
-                логин:<br />
-                <input id="login" />
+    <main>
+        <div id="rectangle2" style="z-index: 1;">
+            <img src="photo/emblem.png" class="image">
+            <h1 class="h11">ОБРАЗОВАТЕЛЬНЫЙ ПОРТАЛ</h1>
+            <h2 class="h22">БПОУ УР <br> «Воткинский машиностроительный техникум имени В.Г.Садовникова»</h2>
+            <p class="p1">427439, г. Воткинск, Королева, 20а <br>
+                Телефон: (34145) 3-54-26 <br>
+                Факс: (34145) 3-36-97 <br>
+                E-mail: bpo-vmt@podved-mo.udmr.ru <br>
+                Информационные ресурсы организации: <br>
+                ----
             </p>
-            <p>
-                пароль:<br />
-                <input id="password"/>
-            </p>
-            <p>
-                поддтвердите пароль <br/>
-                <input id="confpass" />
-            </p>
-            <p> *@
-                @* <button id="reg">Сохранить</button>
-                <p id="err">
-                    пароли не совпадают
-            </p> *@
-            @* <button id="hu">гг</button> *@
-
-                 @* <div class="mainblock">
-                    <div class="news">
-                        <img src="/images/bg.jpg" alt="Alternate Text" class="NImg" />
-                        <div class"info">
-                                негры
-                        </div>
-
-                    </div>
-                </div> *@
-
-                 <div class="mainblock">
-                    <div class="news">
-                        @* <img src="/images/bg.jpg" alt="Alternate Text" class="NImg" /> *@
-                        <p class="head">
-                            голова
-                        </p>
-                        <div class="info">
-                                негры
-                        </div>
-
-                    </div>
-                </div>
-
-                @*  <div class="mainblock">
-                    <div class="news">
-                        <img src="/images/bg.jpg" alt="Alternate Text" class="NImg" />
-                        <div class"info">
-                                негры
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="mainblock">
-                    <div class="news">
-                        <img src="/images/bg.jpg" alt="Alternate Text" class="NImg" />
-                        <div class"info">
+        </div>
+        <div id="rectangle3" style="z-index: 1;">
+            <h3 class="h33">Доска объявлений</h3>
+            <div class="mainblock">
+                <div class="news">
+                   
+                    <p class="head">
+                        голова
+                    </p>
+                    <div class="info">
                             негры
-                        </div>
-
                     </div>
-                </div>  *@
-        </main>
+            
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <center style="padding-top: 15px;">АУ УР "Региональный центр оценки качества образования", 2011-2024 гг.</center>
+    </footer>    
 </body>
-
-
 </html>
 
 <script>
@@ -144,27 +90,6 @@
             console.log(error.message);
         }
     }
-
-    // document.getElementById("hu").addEventListener("click", async () => {
-    //     NewN();
-    // });
-
-
-    // document.getElementById("reg").addEventListener("click", async () => {
-
-    //     const logint = document.getElementById("login").value;
-    //     const passt = document.getElementById("password").value;
-    //     const cp = document.getElementById("confpass").value;
-    //     const err = document.getElementById("err");
-    //     if (cp === passt) {
-    //         err.style.display = "none";
-    //         await reg(logint, passt);
-    //     }
-    //     else { 
-    //         err.style.display = "block";
-    //     }
-        
-    // });
 
     document.body.onload = getNews;
 
@@ -206,11 +131,7 @@
            const News = await response.json();
            // добавляем полученные элементы в таблицу
             News.forEach(news => NewN(news));
-            // News.lenght;
-            // for (I = 0; I < b; I++) {
-            //     NewN(News[I].id, News[I].head, News[I].info)
-               
-            // }
+            
         }
     }
 </script>
