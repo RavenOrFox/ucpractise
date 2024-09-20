@@ -104,6 +104,8 @@
         });
 
         if (response.ok === true) {
+            const user = await response.json();
+            document.cookie = "user=" + user+";" + "samesite=strict" + ";" + "path=/admin";
             
         }
         else {

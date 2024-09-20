@@ -40,6 +40,8 @@ app.UseWhen(
         });
     });
 
+
+
 var contextOptions = new DbContextOptionsBuilder<NewsContext>()
     .UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=Test;ConnectRetryCount=0")
     .Options;
@@ -64,11 +66,13 @@ app.MapPost("/api/login", async ( HttpContext context, ApplicationContext db) =>
     
     if (user.Password != userData.Password) return Results.NotFound(new { message = "неверный пароль" });
 
-    
 
-    return Results.Json("ok");
+    context.Response.SendFileAsync("Pages/");
+    return Results.Json(user);
     
 });
+
+
 
 app.Run();
 public class User
