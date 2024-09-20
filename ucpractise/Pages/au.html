@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <!-- <link rel="stylesheet" href="au.css">-->
+    <title>авторизация</title>
+</head>
+
+<style>
+    body {
+        background-color: rgb(44, 44, 44);
+        text-align: center;
+        color: wheat;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 0.25rem;
+        text-align: justify;
+        font-size: large;
+        margin-top: 5px;
+    }
+
+    #err {
+        color: rgb(255, 29, 29);
+    }
+
+    input {
+        display: block;
+        width: 100%;
+        height: calc(2.25rem + 2px);
+        padding: 0.375rem 0.75rem;
+        font-family: inherit;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: wheat;
+        background-color: rgb(44, 44, 44);
+        background-clip: padding-box;
+        border: 1px solid #bdbdbd;
+        border-radius: 0.25rem;
+        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        ;
+    }
+
+    .main {
+        position: relative;
+        width: 25%;
+        height: 75%;
+        left: calc(75%/2);
+        top: 100px;
+    }
+
+    button {
+        position: relative;
+        background-color: rgb(44, 44, 44);
+        border: 1px solid black;
+        border-radius: 5px;
+        color: wheat;
+        float: left;
+        cursor: pointer;
+        margin-top: 5px;
+        height: 35px;
+        width: 100px;
+    }
+
+        button:hover {
+            background-color: rgb(36, 36, 36);
+        }
+
+        button:active {
+            border: 2px groove black;
+        }
+</style>
+
+<body>
+    <div class="main">
+        <h1 id="h">регистрация</h1>
+        <label for="login">логин</label>
+        <input type="text" name="login" placeholder="логин" id="login" required>
+        <label for="pass1">пароль</label>
+        <input type="password" name="pass1" placeholder="пароль" id="password" required>
+        <button id="reg">вход</button>
+        <p id="err"></p>
+    </div>
+</body>
+
+<script>
+
+    var list;
+    var pist;
+
+    async function reg(loginF, passF) {
+
+        const response = await fetch("api/login", {
+            method: "POST",
+            headers: { "Accept": "application/json", "Content-Type": "application/json" },
+            body: JSON.stringify({
+                login: loginF,
+                password: passF
+            })
+        });
+
+        if (response.ok === true) {
+            
+        }
+        else {
+            const error = await response.json();
+            const err = document.getElementById("err");
+            err.innerHTML = error.message;
+            err.style.display = "block";
+            console.log(error.message);
+        }
+    }
+
+    document.getElementById("reg").addEventListener("click", async () => {
+
+        const logint = document.getElementById("login").value;
+        const passt = document.getElementById("password").value;
+        const err = document.getElementById("err");
+
+        reg(logint, passt);
+        err.innerHTML = "";
+
+    });
+</script>
+
+

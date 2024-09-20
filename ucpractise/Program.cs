@@ -28,56 +28,47 @@ app.UseStaticFiles();
 
 app.MapRazorPages();
 
+app.UseWhen(
+    context => context.Request.Path == "/login",
+    appBuilder =>
+    {
 
-
-
-app.MapGet("/api/register", async (ApplicationContext db) => await db.Users.ToListAsync());
-
-List<News> news = new List<News>();
+        // отправл€ем ответ
+        appBuilder.Run(async context =>
+        {
+            await context.Response.SendFileAsync("pages/au.html");
+        });
+    });
 
 var contextOptions = new DbContextOptionsBuilder<NewsContext>()
     .UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=Test;ConnectRetryCount=0")
     .Options;
 
+var context = new NewsContext(contextOptions);
 
-
-
-using (var context = new NewsContext(contextOptions))
+app.MapGet("/api/news", async ( NewsContext db) =>
 {
-    news = context.news.ToList();
-}
+    var news = context.news.ToList();
+    
+    return Results.Json(news);
+});
 
-app.UseWhen(context => context.Request.Path == "/api/news",
-    appBuilder =>
-    {
-        appBuilder.Run(async context =>
-        {
-
-            await context.Response.WriteAsJsonAsync(news);
-
-        }
-            );
-    }
-    );
-
-
-app.MapPost("/api/register", async (User userData, ApplicationContext db) =>
+app.MapPost("/api/login", async ( HttpContext context, ApplicationContext db) =>
 {
+    var userData = await context.Request.ReadFromJsonAsync<User>();
     // получаем пользовател€ по login
     var user = await db.Users.FirstOrDefaultAsync(u => u.Login == userData.Login);
 
-    // если не найден, отправл€ем статусный код и сообщение об ошибке
-    if (user != null) return Results.NotFound(new { message = "ѕользователь существует" }); 
+    
+    if (user == null) return Results.NotFound(new { message = "неверный логин" });
+    
+    if (user.Password != userData.Password) return Results.NotFound(new { message = "неверный пароль" });
 
-    // если пользователь найден, измен€ем его данные и отправл€ем обратно клиенту
-    await db.Users.AddAsync(userData);
-    await db.SaveChangesAsync();
-    return Results.Json(userData);
+    context.Response.Cookies.
+
+    return Results.Json("ok");
+    
 });
-
-
-
-
 
 app.Run();
 public class User
@@ -108,7 +99,7 @@ public class ApplicationContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<User>().HasData(
-                new User { Id = 1, Login = "bob", Password = "1234" },
+                new User { Id = 1, Login = "admin", Password = "admin" },
                 new User { Id = 2, Login = "bib", Password = "1234" },
                 new User { Id = 3, Login = "bab", Password = "1234" }
         );

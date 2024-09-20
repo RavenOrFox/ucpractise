@@ -51,8 +51,8 @@
         </aside>
 
         <main id="main">
-            информация
-            <p>
+            информация<br/>
+            @* <p>
                 логин:<br />
                 <input id="login" />
             </p>
@@ -64,11 +64,11 @@
                 поддтвердите пароль <br/>
                 <input id="confpass" />
             </p>
-            <p>
-                <button id="reg">Сохранить</button>
+            <p> *@
+                @* <button id="reg">Сохранить</button>
                 <p id="err">
                     пароли не совпадают
-            </p>
+            </p> *@
             @* <button id="hu">гг</button> *@
 
                  @* <div class="mainblock">
@@ -150,21 +150,21 @@
     // });
 
 
-    document.getElementById("reg").addEventListener("click", async () => {
+    // document.getElementById("reg").addEventListener("click", async () => {
 
-        const logint = document.getElementById("login").value;
-        const passt = document.getElementById("password").value;
-        const cp = document.getElementById("confpass").value;
-        const err = document.getElementById("err");
-        if (cp === passt) {
-            err.style.display = "none";
-            await reg(logint, passt);
-        }
-        else { 
-            err.style.display = "block";
-        }
+    //     const logint = document.getElementById("login").value;
+    //     const passt = document.getElementById("password").value;
+    //     const cp = document.getElementById("confpass").value;
+    //     const err = document.getElementById("err");
+    //     if (cp === passt) {
+    //         err.style.display = "none";
+    //         await reg(logint, passt);
+    //     }
+    //     else { 
+    //         err.style.display = "block";
+    //     }
         
-    });
+    // });
 
     document.body.onload = getNews;
 
@@ -203,7 +203,7 @@
         //если запрос прошел нормально
         if (response.ok === true) {
             //получаем данные
-            const News = await response.json();
+           const News = await response.json();
            // добавляем полученные элементы в таблицу
             News.forEach(news => NewN(news));
             // News.lenght;
