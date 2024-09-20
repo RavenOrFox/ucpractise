@@ -64,7 +64,7 @@ app.MapPost("/api/login", async ( HttpContext context, ApplicationContext db) =>
     
     if (user.Password != userData.Password) return Results.NotFound(new { message = "неверный пароль" });
 
-    context.Response.Cookies.
+    
 
     return Results.Json("ok");
     
