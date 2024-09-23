@@ -12,6 +12,23 @@
     <script src="js/footer.js"></script>
     <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
 </head>
+
+<style>
+
+    html, body {
+        background-color: rgb(33, 33, 33);
+        background-image: url("photo/back.png") /*, url("photo/GkGcwIP.jpg");*/;
+        background-repeat: no-repeat;
+        background-position: top /*, center bottom*/;
+        background-size: 100%;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        width: 100%;
+        height: 100%;
+        scroll-behavior: smooth;
+        position: relative;
+        min-height: 100%;
+    }
+</style>
 <body>
     <header>
         <div class="top-menu">
@@ -25,12 +42,14 @@
                 <a class="underline" href="https://es.ciur.ru/auth/login-page">Электронная школа</a>
                 <a class="underline"href="https://ds.ciur.ru/auth/login-page">Электронный детский сад</a>
                 <a class="underline" href="https://ek.udmr.ru/auth/login-page">Электронный колледж</a>  
-                <a class="underline" >Контакты</a>
+               @*  <a class="underline" >Контакты</a> *@
             </div>
         </div>
-    <button id="headerbt" class="btn">Вход</button>
+        <form action="https://localhost:7004/login" target="_blank">
+        <button id="headerbt" class="btn">Вход</button>
+        </form> 
     </header>
-    <main>
+    <main >
         <div id="rectangle2" style="z-index: 1;">
             <img src="photo/emblem.png" class="image">
             <h1 class="h11">ОБРАЗОВАТЕЛЬНЫЙ ПОРТАЛ</h1>
@@ -43,21 +62,9 @@
                 ----
             </p>
         </div>
-        <div id="rectangle3" style="z-index: 1;">
+         <div id="rectangle3" style="z-index: 1;">
             <h3 class="h33">Доска объявлений</h3>
-            <div class="mainblock">
-                <div class="news">
-                   
-                    <p class="head">
-                        голова
-                    </p>
-                    <div class="info">
-                            негры
-                    </div>
-            
-                </div>
-            </div>
-        </div>
+         </div>
     </main>
     <footer>
         <center style="padding-top: 15px;">АУ УР "Региональный центр оценки качества образования", 2011-2024 гг.</center>
@@ -69,6 +76,8 @@
     
 
     async function reg(loginF, passF) {
+
+        
 
         const response = await fetch("api/register", {
             method: "POST",
@@ -95,7 +104,7 @@
 
     function NewN(news1)
     {
-        var main = document.getElementById("main");
+        var main = document.getElementById("rectangle3");
         var mainblock = document.createElement("div");
         var news = document.createElement("div");
         var head = document.createElement("p");
@@ -134,4 +143,9 @@
             
         }
     }
+
+    document.getElementById("headerbt").addEventListener("click", async () => {
+
+
+    });
 </script>
